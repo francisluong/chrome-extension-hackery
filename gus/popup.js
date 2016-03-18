@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function(tab) {
           var awesome_url = "<a href=" + url + ">" + w_id + ": " + description + "</a>";
           node = document.getElementById("copy-me");
           node.innerHTML = awesome_url;
-          toClipboard(node)
+          toClipboard(node.children[0])
           renderTextElement("copy-status", "status: copied URL text for " + w_id);
         });
       });

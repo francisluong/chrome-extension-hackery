@@ -3,7 +3,7 @@
 
   "name": "Franco Gus URL Snatch",
   "description": "Copies an awesome URL for a Salesforce Work Item",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "browser_action": {
     "default_icon": "gus_logo_large_square_icon_256a.png",
