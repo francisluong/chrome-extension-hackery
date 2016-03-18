@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Franco Gus URL Snatch",
+  "description": "Copies an awesome URL for a Salesforce Work Item",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "clipboardWrite"
+  ]
+}
