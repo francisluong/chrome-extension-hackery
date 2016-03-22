@@ -109,17 +109,20 @@ document.addEventListener('DOMContentLoaded', function(tab) {
         chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, function(response) {
           console.log("response received by popup.js");
           console.log(response);
-          console.log(response);
-          renderTextElement("description", response.to_popup);
-          description = response.to_popup;
-          var w_expr = /.*(W-\d+).*/;
-          var match = w_expr.exec(title);
-          var w_id = match[1];
-          var awesome_url = "<a href=" + url + ">" + w_id + ": " + description + "</a>";
+          link_text = title
+          if (response != null) {
+            renderTextElement("description", response.to_popup);
+            description = response.to_popup;
+            var w_expr = /.*(W-\d+).*/;
+            var match = w_expr.exec(title);
+            var w_id = match[1];
+            link_text = w_id + ": " + description
+          }
+          var awesome_url = "<a href=" + url + ">" + link_text + "</a>";
           node = document.getElementById("copy-me");
           node.innerHTML = awesome_url;
           toClipboard(node.children[0])
-          renderTextElement("copy-status", "status: copied URL text for " + w_id);
+          renderTextElement("copy-status", "status: copied URL text!");
         });
       });
     })
