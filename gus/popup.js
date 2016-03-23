@@ -123,6 +123,9 @@ document.addEventListener('DOMContentLoaded', function(tab) {
           node.innerHTML = awesome_url;
           toClipboard(node.children[0])
           renderTextElement("copy-status", "status: copied URL text!");
+          // document.getElementById("box").setAttribute('style', "border:1px dotted blue; background-color: #aaaaaa");
+          document.getElementById("box").style.border = '1px dotted blue'
+          document.getElementById("box").style.backgroundColor = '#aaaaaa'
         });
       });
     })
