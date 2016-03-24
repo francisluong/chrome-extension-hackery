@@ -93,6 +93,35 @@ function toClipboard(node) {
   document.execCommand('copy');
 }
 
+function bestTitleText(description, title) {
+  console.log("bestTitleText: description: " + description)
+  var expressions = [
+    /.*(W-\d+).*/,
+    /(Case:\s*\d+).*/
+  ]
+  for (var i = 0; i < expressions.length; i++) {
+    var expr = expressions[i]
+    var id = getMatchingTitleText(expr, title);
+    if (id != null) {
+      return id + ": " + description;
+    } else {
+      console.log("bestTitleText" + expr + "NOT MATCHED VS. " + title)
+    }
+  }
+  return title
+}
+
+function getMatchingTitleText(expression, title) {
+  var match = expression.exec(title);
+  console.log("getMatchingTitleText" + expression + " VS. " + title)
+  if (match == null) {
+    return null;
+  } else {
+    return match[1];
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', function(tab) {
 
   getDescription()
@@ -113,10 +142,7 @@ document.addEventListener('DOMContentLoaded', function(tab) {
           if (response != null) {
             renderTextElement("description", response.to_popup);
             description = response.to_popup;
-            var w_expr = /.*(W-\d+).*/;
-            var match = w_expr.exec(title);
-            var w_id = match[1];
-            link_text = w_id + ": " + description
+            link_text = bestTitleText(description, title);
           }
           var awesome_url = "<a href=" + url + ">" + link_text + "</a>";
           node = document.getElementById("copy-me");
