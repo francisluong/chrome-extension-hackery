@@ -19,6 +19,87 @@
         /*overflow: hidden;*/
         /*max-width: 400px;*/
       }
+
+      .dropbtn {
+          background-color: #4CAF50;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+      }
+
+      .dropdown {
+          position: relative;
+          display: inline-block;
+      }
+
+      .dropdown:hover .dropbtn {
+          background-color:#3e8e41;
+      }
+
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 100%;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+      }
+
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+      }
+
+      .dropdown-content a:hover {background-color: #f1f1f1}
+
+      .dropdown2:hover .dropdown-content {
+          display: block;
+      }
+
+      .right {
+      	right:0;
+      }
+      @media only screen and (max-width: 600px) {
+      .dropdown {
+      	display:inline;
+      }
+        .dropbtn {
+         width: 100%;
+         margin-top:55px;
+        }
+        .dropbtn2 {
+         margin-top:5px;
+        }
+          .dropspan {
+         width: 100%;
+         margin-top:5px;
+        }
+
+        .dropimg {
+         margin-top:55px;
+        }
+        .right {
+      	left:0;
+      	min-width:300px;
+      }
+
+      }
+
+      @media only screen and (max-width: 346px) {
+      .right {
+      	left:0;
+      	min-width:252px;
+      }
+
+      }
+      .show {display:block;}
+
+
     </style>
 
     <!--
@@ -30,14 +111,31 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <img src=gus_logo_large_square_icon_128a.png>
-    <div id="url">default_status</div>
-    <div id="title">default_title</div>
-    <div id="description"></div>
-    <hr>
-    <div id="box">
-      <div id="copy-me">default_groovy_url</div>
+    <div id=logo_area>
+      <div id=logo_left style="float: left">
+        <img src=gus_logo_large_square_icon_128a.png>
+      </div>
+      <div id=logo_right style="vertical-align: top; float: right; align: left">
+        <div class="dropdown dropdown2">
+          <button class="dropbtn">URL Text Format</button>
+          <!-- // looks like this format won't work -->
+          <div class="dropdown-content">
+            <a href="javascript:renderURLArea(html)">Formatted URL Text</a>
+            <a href="javascript:renderURLArea(markdown)">Markdown</a>
+            <a href="javascript:renderURLArea(raw)">Raw Title And Link</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="font-style: italic;" id="copy-status">status: init: copy not performed</div>
+    <div id=lower style="clear: both">
+      <div id="url">default_status</div>
+      <div id="title">default_title</div>
+      <div id="description"></div>
+      <hr>
+      <div id="box">
+        <div id="copy-me">default_groovy_url</div>
+      </div>
+      <div style="font-style: italic;" id="copy-status">status: init: copy not performed</div>
+    </div>
   </body>
 </html>

@@ -121,12 +121,39 @@ function getMatchingTitleText(expression, title) {
   }
 }
 
+function renderCopyStatus(text) {
+  renderTextElement("copy-status", text);
+  document.getElementById("box").style.border = '1px dotted blue'
+  document.getElementById("box").style.backgroundColor = '#aaaaaa'
+}
+
+function renderURLArea(format) {
+  format = format || "html";
+  if (format == "raw") {
+    var mdURL = link_text + "\n" + urlx;
+    node = document.getElementById("copy-me");
+    node.innerText = mdURL;
+    toClipboard(node.innerText)
+    renderCopyStatus("status: copied raw URL text!");
+  } else if (format == "markdown") {
+    var mdURL = "[" + link_text + "](" + urlx + ")";
+    node = document.getElementById("copy-me");
+    node.innerText = mdURL;
+    toClipboard(node.innerText)
+    renderCopyStatus("status: copied markdown URL text!");
+  } else {
+    var awesome_url = "<a href=" + urlx + ">" + link_text + "</a>";
+    node = document.getElementById("copy-me");
+    node.innerHTML = awesome_url;
+    toClipboard(node.children[0])
+    renderCopyStatus("status: copied groovy URL text!");
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function(tab) {
 
   getDescription()
 
-  var urlx
   var title
   var description
   getCurrentTabUrl(function(url) {
@@ -144,14 +171,7 @@ document.addEventListener('DOMContentLoaded', function(tab) {
             description = response.to_popup;
             link_text = bestTitleText(description, title);
           }
-          var awesome_url = "<a href=" + url + ">" + link_text + "</a>";
-          node = document.getElementById("copy-me");
-          node.innerHTML = awesome_url;
-          toClipboard(node.children[0])
-          renderTextElement("copy-status", "status: copied URL text!");
-          // document.getElementById("box").setAttribute('style', "border:1px dotted blue; background-color: #aaaaaa");
-          document.getElementById("box").style.border = '1px dotted blue'
-          document.getElementById("box").style.backgroundColor = '#aaaaaa'
+          renderURLArea()
         });
       });
     })
