@@ -116,15 +116,6 @@
         <img src=gus_logo_large_square_icon_128a.png>
       </div>
       <div id=logo_right style="vertical-align: top; float: right; align: left">
-        <div class="dropdown dropdown2">
-          <button class="dropbtn">URL Text Format</button>
-          <!-- // looks like this format won't work -->
-          <div class="dropdown-content">
-            <a href="javascript:renderURLArea(html)">Formatted URL Text</a>
-            <a href="javascript:renderURLArea(markdown)">Markdown</a>
-            <a href="javascript:renderURLArea(raw)">Raw Title And Link</a>
-          </div>
-        </div>
       </div>
     </div>
     <div id=lower style="clear: both">
@@ -133,7 +124,17 @@
       <div id="description"></div>
       <hr>
       <div id="box">
-        <div id="copy-me">default_groovy_url</div>
+        <div id="copy-me-html">default_groovy_url</div>
+        <hr>
+        <div id="copy-me-markdown">default_md_url</div>
+        <div id="markdown-button-area">
+          <button id='copy-button-markdown'>Copy Markdown</button>
+        </div>
+        <hr>
+        <div id="copy-me-raw">default_raw_url</div>
+        <div id="raw-button-area">
+          <button id='copy-button-raw'>Copy Raw</button>
+        </div>
       </div>
       <div style="font-style: italic;" id="copy-status">status: init: copy not performed</div>
     </div>

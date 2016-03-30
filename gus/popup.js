@@ -127,27 +127,32 @@ function renderCopyStatus(text) {
   document.getElementById("box").style.backgroundColor = '#aaaaaa'
 }
 
-function renderURLArea(format) {
-  format = format || "html";
-  if (format == "raw") {
-    var mdURL = link_text + "\n" + urlx;
-    node = document.getElementById("copy-me");
-    node.innerText = mdURL;
-    toClipboard(node.innerText)
-    renderCopyStatus("status: copied raw URL text!");
-  } else if (format == "markdown") {
-    var mdURL = "[" + link_text + "](" + urlx + ")";
-    node = document.getElementById("copy-me");
-    node.innerText = mdURL;
-    toClipboard(node.innerText)
-    renderCopyStatus("status: copied markdown URL text!");
-  } else {
-    var awesome_url = "<a href=" + urlx + ">" + link_text + "</a>";
-    node = document.getElementById("copy-me");
-    node.innerHTML = awesome_url;
-    toClipboard(node.children[0])
-    renderCopyStatus("status: copied groovy URL text!");
-  }
+function renderURLArea() {
+  var raw = link_text + "\n" + urlx;
+  node = document.getElementById("copy-me-raw");
+  node.innerText = raw;
+  var mdURL = "[" + link_text + "](" + urlx + ")";
+  node = document.getElementById("copy-me-markdown");
+  node.innerText = mdURL;
+  var awesome_url = "<a href=" + urlx + ">" + link_text + "</a>";
+  node = document.getElementById("copy-me-html");
+  node.innerHTML = awesome_url;
+  toClipboard(node.children[0])
+  renderCopyStatus("status: copied groovy URL text!");
+}
+
+function copyMarkdown() {
+  console.log("copyMarkdown")
+  node = document.getElementById("copy-me-markdown");
+  toClipboard(node)
+  renderCopyStatus("status: copied markdown URL text!");
+}
+
+function copyRaw() {
+  console.log("copyRaw")
+  node = document.getElementById("copy-me-raw");
+  toClipboard(node)
+  renderCopyStatus("status: copied raw URL text!");
 }
 
 document.addEventListener('DOMContentLoaded', function(tab) {
@@ -176,8 +181,13 @@ document.addEventListener('DOMContentLoaded', function(tab) {
       });
     })
   });
+  console.log("popup.js - button listeners!")
+
+  document.getElementById("copy-button-markdown").addEventListener('click', copyMarkdown);
+  document.getElementById('copy-button-raw').addEventListener('click', copyRaw);
 
 });
+
 
 
 console.log("popup.js!")
