@@ -124,7 +124,7 @@ function getMatchingTitleText(expression, title) {
 function renderCopyStatus(text) {
   renderTextElement("copy-status", text);
   document.getElementById("box").style.border = '1px dotted blue'
-  document.getElementById("box").style.backgroundColor = '#aaaaaa'
+  document.getElementById("box").style.backgroundColor = '#eeeeee'
 }
 
 function renderURLArea() {

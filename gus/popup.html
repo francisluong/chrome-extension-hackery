@@ -12,93 +12,10 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        /*text-overflow: ellipsis;*/
-        /*overflow: hidden;*/
-        /*max-width: 400px;*/
-      }
 
-      .dropbtn {
-          background-color: #4CAF50;
-          color: white;
-          padding: 16px;
-          font-size: 16px;
-          border: none;
-          cursor: pointer;
+      .copy-me-raw {
+        background-color: #f9f9f9;
       }
-
-      .dropdown {
-          position: relative;
-          display: inline-block;
-      }
-
-      .dropdown:hover .dropbtn {
-          background-color:#3e8e41;
-      }
-
-      .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 100%;
-          overflow: auto;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          z-index: 1;
-      }
-
-      .dropdown-content a {
-          color: black;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-      }
-
-      .dropdown-content a:hover {background-color: #f1f1f1}
-
-      .dropdown2:hover .dropdown-content {
-          display: block;
-      }
-
-      .right {
-      	right:0;
-      }
-      @media only screen and (max-width: 600px) {
-      .dropdown {
-      	display:inline;
-      }
-        .dropbtn {
-         width: 100%;
-         margin-top:55px;
-        }
-        .dropbtn2 {
-         margin-top:5px;
-        }
-          .dropspan {
-         width: 100%;
-         margin-top:5px;
-        }
-
-        .dropimg {
-         margin-top:55px;
-        }
-        .right {
-      	left:0;
-      	min-width:300px;
-      }
-
-      }
-
-      @media only screen and (max-width: 346px) {
-      .right {
-      	left:0;
-      	min-width:252px;
-      }
-
-      }
-      .show {display:block;}
-
 
     </style>
 
@@ -123,20 +40,22 @@
       <div id="title">default_title</div>
       <div id="description"></div>
       <hr>
-      <div id="box">
-        <div id="copy-me-html">default_groovy_url</div>
-        <hr>
-        <div id="copy-me-markdown">default_md_url</div>
-        <div id="markdown-button-area">
-          <button id='copy-button-markdown'>Copy Markdown</button>
+      <div id="box" style="border: 1px dotted blue">
+        <div id="copy-me-html" style="border: 1px dotted blue">default_groovy_url</div>
+        <div id="markdown-box" style="border: 1px dotted blue; background-color: #cccccc">
+          <div id="copy-me-markdown">default_md_url</div>
+          <div id="markdown-button-area">
+            <button id='copy-button-markdown'>Copy Markdown</button>
+          </div>
         </div>
-        <hr>
-        <div id="copy-me-raw">default_raw_url</div>
-        <div id="raw-button-area">
-          <button id='copy-button-raw'>Copy Raw</button>
+        <div id="raw-box" style="border: 1px dotted blue; background-color: #aaaaaa">
+          <div id="copy-me-raw">default_raw_url</div>
+          <div id="raw-button-area">
+            <button id='copy-button-raw'>Copy Raw</button>
+          </div>
         </div>
       </div>
-      <div style="font-style: italic;" id="copy-status">status: init: copy not performed</div>
+      <div id="copy-status" style="font-style: italic; border: 1px dotted blue"> status: init: copy not performed</div>
     </div>
   </body>
 </html>
