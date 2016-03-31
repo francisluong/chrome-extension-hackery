@@ -13,16 +13,21 @@
         font-size: 100%;
       }
       .boxed { border: 1px dotted blue }
+      #box { .boxed }
+      #url { .boxed }
+      #title { .boxed }
+      #description { .boxed }
+      #copy-me-html { .boxed }
       #markdown-box {
-        border: 1px dotted blue;
+        .boxed;
         background-color: #cccccc;
       }
       #raw-box {
-        border: 1px dotted blue;
+        .boxed;
         background-color: #aaaaaa;
       }
       #copy-status {
-        border: 1px dotted blue;
+        .boxed;
         font-style: italic;
       }
     </style>
@@ -44,12 +49,12 @@
       </div>
     </div>
     <div id=lower style="clear: both">
-      <div id="url" class="boxed">default_status</div>
-      <div id="title" class="boxed">default_title</div>
-      <div id="description" class="boxed"></div>
+      <div id="url">default_status</div>
+      <div id="title">default_title</div>
+      <div id="description"></div>
       <hr>
-      <div id="box" class="boxed">
-        <div id="copy-me-html" class="boxed">default_groovy_url</div>
+      <div id="box">
+        <div id="copy-me-html">default_groovy_url</div>
         <div id="markdown-box">
           <div id="copy-me-markdown">default_md_url</div>
           <div id="markdown-button-area">
@@ -63,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div id="copy-status"> status: init: copy not performed</div>
+      <div id="copy-status">status: init: copy not performed</div>
     </div>
   </body>
 </html>
