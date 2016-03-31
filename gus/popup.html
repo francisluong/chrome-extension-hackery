@@ -12,11 +12,19 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-
-      .copy-me-raw {
-        background-color: #f9f9f9;
+      .boxed { border: 1px dotted blue }
+      #markdown-box {
+        border: 1px dotted blue;
+        background-color: #cccccc;
       }
-
+      #raw-box {
+        border: 1px dotted blue;
+        background-color: #aaaaaa;
+      }
+      #copy-status {
+        border: 1px dotted blue;
+        font-style: italic;
+      }
     </style>
 
     <!--
@@ -36,26 +44,26 @@
       </div>
     </div>
     <div id=lower style="clear: both">
-      <div id="url">default_status</div>
-      <div id="title">default_title</div>
-      <div id="description"></div>
+      <div id="url" class="boxed">default_status</div>
+      <div id="title" class="boxed">default_title</div>
+      <div id="description" class="boxed"></div>
       <hr>
-      <div id="box" style="border: 1px dotted blue">
-        <div id="copy-me-html" style="border: 1px dotted blue">default_groovy_url</div>
-        <div id="markdown-box" style="border: 1px dotted blue; background-color: #cccccc">
+      <div id="box" class="boxed">
+        <div id="copy-me-html" class="boxed">default_groovy_url</div>
+        <div id="markdown-box">
           <div id="copy-me-markdown">default_md_url</div>
           <div id="markdown-button-area">
             <button id='copy-button-markdown'>Copy Markdown</button>
           </div>
         </div>
-        <div id="raw-box" style="border: 1px dotted blue; background-color: #aaaaaa">
+        <div id="raw-box">
           <div id="copy-me-raw">default_raw_url</div>
           <div id="raw-button-area">
             <button id='copy-button-raw'>Copy Raw</button>
           </div>
         </div>
       </div>
-      <div id="copy-status" style="font-style: italic; border: 1px dotted blue"> status: init: copy not performed</div>
+      <div id="copy-status"> status: init: copy not performed</div>
     </div>
   </body>
 </html>
