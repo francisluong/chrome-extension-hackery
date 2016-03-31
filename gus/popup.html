@@ -12,12 +12,23 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        /*text-overflow: ellipsis;*/
-        /*overflow: hidden;*/
-        /*max-width: 400px;*/
+      .boxed { border: 1px dotted blue }
+      #box { .boxed }
+      #url { .boxed }
+      #title { .boxed }
+      #description { .boxed }
+      #copy-me-html { .boxed }
+      #markdown-box {
+        .boxed;
+        background-color: #cccccc;
+      }
+      #raw-box {
+        .boxed;
+        background-color: #aaaaaa;
+      }
+      #copy-status {
+        .boxed;
+        font-style: italic;
       }
     </style>
 
@@ -30,14 +41,34 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <img src=gus_logo_large_square_icon_128a.png>
-    <div id="url">default_status</div>
-    <div id="title">default_title</div>
-    <div id="description"></div>
-    <hr>
-    <div id="box">
-      <div id="copy-me">default_groovy_url</div>
+    <div id=logo_area>
+      <div id=logo_left style="float: left">
+        <img src=gus_logo_large_square_icon_128a.png>
+      </div>
+      <div id=logo_right style="vertical-align: top; float: right; align: left">
+      </div>
     </div>
-    <div style="font-style: italic;" id="copy-status">status: init: copy not performed</div>
+    <div id=lower style="clear: both">
+      <div id="url">default_status</div>
+      <div id="title">default_title</div>
+      <div id="description"></div>
+      <hr>
+      <div id="box">
+        <div id="copy-me-html">default_groovy_url</div>
+        <div id="markdown-box">
+          <div id="copy-me-markdown">default_md_url</div>
+          <div id="markdown-button-area">
+            <button id='copy-button-markdown'>Copy Markdown</button>
+          </div>
+        </div>
+        <div id="raw-box">
+          <div id="copy-me-raw">default_raw_url</div>
+          <div id="raw-button-area">
+            <button id='copy-button-raw'>Copy Raw</button>
+          </div>
+        </div>
+      </div>
+      <div id="copy-status">status: init: copy not performed</div>
+    </div>
   </body>
 </html>
