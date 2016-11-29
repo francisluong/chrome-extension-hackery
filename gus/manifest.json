@@ -3,7 +3,7 @@
 
   "name": "The Groovy URL Snatcher",
   "description": "Copies a groovy URL: formatted html text based on the title - click the button then paste as rich text",
-  "version": "1.0.6",
+  "version": "1.0.8",
 
   "browser_action": {
     "default_icon": "gus_logo_large_square_icon_256a.png",
