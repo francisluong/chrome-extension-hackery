@@ -5,17 +5,16 @@ if (window == top) {
   // chrome.extension.sendRequest(document)
 }
 
+
 var ids = [
-    "bugDetailPage_bugWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
-    "userStoryDetailPage_userStoryWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
-    "investigationDetailPage_investigationWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
+    "subjectInput_inputComponent_outputStandalone_ileinner",
     "cas14_ileinner"
 ]
 for (var i = 0; i < ids.length; i++) {
     var id = ids[i]
-    var gus_description_node = document.getElementById(id)
-    if (gus_description_node) {
-      var gus_description = document.getElementById(id).innerText;
+    var gus_description_nodes = $( `[id*='${id}']` )
+    if (gus_description_nodes) {
+      var gus_description = gus_description_nodes[0].innerText;
       console.log("internal gus description" + gus_description)
       break
     }
