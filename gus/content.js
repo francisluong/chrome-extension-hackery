@@ -8,6 +8,7 @@ if (window == top) {
 var ids = [
     "bugDetailPage_bugWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
     "userStoryDetailPage_userStoryWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
+    "investigationDetailPage_investigationWorkForm_subjectInput_inputComponent_outputStandalone_ileinner",
     "cas14_ileinner"
 ]
 for (var i = 0; i < ids.length; i++) {
