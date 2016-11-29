@@ -2,6 +2,7 @@
   "manifest_version": 2,
 
   "name": "The Groovy URL Snatcher",
+  "short_name": "Gus_URL_Copy",
   "description": "Copies a groovy URL: formatted html text based on the title - click the button then paste as rich text",
   "version": "1.0.8",
 
