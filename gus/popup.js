@@ -127,14 +127,28 @@ function renderCopyStatus(text) {
   document.getElementById("box").style.backgroundColor = '#eeeeee'
 }
 
+function normalizeGusURLs(url_in) {
+  if (url_in.includes("salesforce.com/apex/")) {
+    // work item id
+    id = url_in.split("?")[1].split("=")[1].split("&")[0]
+    // xxx.my.salesforce.com
+    host = url_in.split("/")[2]
+    if (id && host) {
+      return `https://${host}/${id}`
+    }
+  }
+  return url_in
+}
+
 function renderURLArea() {
-  var raw = link_text + "\n" + urlx;
+  url_final = normalizeGusURLs(urlx);
+  var raw = link_text + "\n" + url_final;
   node = document.getElementById("copy-me-raw");
   node.innerText = raw;
-  var mdURL = "[" + link_text + "](" + urlx + ")";
+  var mdURL = "[" + link_text + "](" + url_final + ")";
   node = document.getElementById("copy-me-markdown");
   node.innerText = mdURL;
-  var awesome_url = "<a href=" + urlx + ">" + link_text + "</a>";
+  var awesome_url = "<a href=" + url_final + ">" + link_text + "</a>";
   node = document.getElementById("copy-me-html");
   node.innerHTML = awesome_url;
   toClipboard(node.children[0])
