@@ -136,6 +136,15 @@ function normalizeGusURLs(url_in) {
     if (id && host) {
       return `https://${host}/${id}`
     }
+  } else if (url_in.includes("lightning.force.com/one")) {
+    // https://gus.lightning.force.com/one/one.app#/sObject/a07B0000003XClGIAW/view
+    // work item id
+    id = url_in.split("/")[6]
+    // xxx.lightning.force.com
+    host = url_in.split("/")[2]
+    if (id && host) {
+      return `https://${host}/${id}`
+    }
   }
   return url_in
 }
