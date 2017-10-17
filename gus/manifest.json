@@ -4,7 +4,7 @@
   "name": "The Groovy URL Snatcher",
   "short_name": "Gus_URL_Copy",
   "description": "Copies a groovy URL: formatted html text based on the title - click the button then paste as rich text",
-  "version": "1.0.11",
+  "version": "1.0.12",
 
   "browser_action": {
     "default_icon": "gus_logo_large_square_icon_256a.png",
@@ -12,8 +12,14 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.my.salesforce.com/*"],
-      "js": ["jquery-3.1.1.min.js", "content.js"]
+      "matches": [
+        "*://gus.my.salesforce.com/*",
+        "*://gus.lightning.force.com/*"
+      ],
+      "js": [
+        "jquery-3.1.1.min.js",
+        "content.js"
+      ]
     }
   ],
   "permissions": [

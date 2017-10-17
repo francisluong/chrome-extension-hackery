@@ -67,9 +67,7 @@ function getDescription() {
   var description
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, function(response) {
-      console.log("response received by popup.js");
-      console.log(response);
-      console.log(response);
+      console.log(`response received by popup.js ${JSON.stringify(response)}`);
       renderTextElement("description", response.to_popup)
       description = response.to_popup
     });
@@ -78,7 +76,7 @@ function getDescription() {
 
 function getElementById(id) {
   var value = document.getElementById(id).innerText
-  console.log("[" + id + "=" + value + "]")
+  console.log("getElementById: [" + id + "=" + value + "]")
 }
 
 function toClipboard(node) {
@@ -184,15 +182,15 @@ document.addEventListener('DOMContentLoaded', function(tab) {
 
   var title
   var description
+  console.log('DOMContentLoaded')
   getCurrentTabUrl(function(url) {
     urlx = url
     renderTextElement('url', 'URL: ' + urlx);
     getTitle(function(title) {
       renderTextElement('title', 'Title: ' + title);
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, function(response) {
-          console.log("response received by popup.js");
-          console.log(response);
+        chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, response => {
+          console.log(`getTitle: response received by popup.js ${JSON.stringify(response)}`);
           link_text = title
           if (response != null) {
             renderTextElement("description", response.to_popup);
