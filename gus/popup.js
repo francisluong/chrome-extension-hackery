@@ -95,7 +95,8 @@ function bestTitleText(description, title) {
   console.log("bestTitleText: description: " + description)
   var expressions = [
     /.*(W-\d+).*/,
-    /(Case:\s*\d+).*/
+    /(Case:\s*\d+).*/,
+    /(\d+).*/,
   ]
   for (var i = 0; i < expressions.length; i++) {
     var expr = expressions[i]
@@ -187,13 +188,12 @@ document.addEventListener('DOMContentLoaded', function(tab) {
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, response => {
           console.log(`getTitle: response received by popup.js ${JSON.stringify(response)}`);
-          link_text = title
+          const clean_title = title.replace(/ \| Salesforce/, "")
           if (response != null) {
             renderTextElement("description", response.to_popup);
             description = response.to_popup;
-            link_text = bestTitleText(description, title);
+            link_text = bestTitleText(description, clean_title);
           }
-          link_text = link_text.replace(/ \| Salesforce/, "")
           renderURLArea()
         });
       });
