@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function(tab) {
         chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, response => {
           console.log(`getTitle: response received by popup.js ${JSON.stringify(response)}`);
           const clean_title = title.replace(/ \| Salesforce/, "")
+          link_text = clean_title
           if (response != null) {
             renderTextElement("description", response.to_popup);
             description = response.to_popup;
