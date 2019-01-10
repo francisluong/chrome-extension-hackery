@@ -63,17 +63,6 @@ function renderTextElement(eleID, eleText) {
   document.getElementById(eleID).textContent = eleText;
 }
 
-function getDescription() {
-  var description
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, function(response) {
-      console.log(`response received by popup.js ${JSON.stringify(response)}`);
-      renderTextElement("description", response.to_popup)
-      description = response.to_popup
-    });
-  });
-}
-
 function getElementById(id) {
   var value = document.getElementById(id).innerText
   console.log("getElementById: [" + id + "=" + value + "]")
@@ -89,35 +78,6 @@ function toClipboard(node) {
   s.addRange(r);
   // Copy - requires clipboardWrite permission
   document.execCommand('copy');
-}
-
-function bestTitleText(description, title) {
-  console.log("bestTitleText: description: " + description)
-  var expressions = [
-    /.*(W-\d+).*/,
-    /(Case:\s*\d+).*/,
-    /(\d+).*/,
-  ]
-  for (var i = 0; i < expressions.length; i++) {
-    var expr = expressions[i]
-    var id = getMatchingTitleText(expr, title);
-    if (id != null) {
-      return id + ": " + description;
-    } else {
-      console.log("bestTitleText" + expr + "NOT MATCHED VS. " + title)
-    }
-  }
-  return title
-}
-
-function getMatchingTitleText(expression, title) {
-  var match = expression.exec(title);
-  console.log("getMatchingTitleText" + expression + " VS. " + title)
-  if (match == null) {
-    return null;
-  } else {
-    return match[1];
-  }
 }
 
 function renderCopyStatus(text) {
@@ -174,9 +134,6 @@ function copyRaw() {
 }
 
 document.addEventListener('DOMContentLoaded', function(tab) {
-
-  getDescription()
-
   var title
   var description
   console.log('DOMContentLoaded')
@@ -186,17 +143,9 @@ document.addEventListener('DOMContentLoaded', function(tab) {
     getTitle(function(title) {
       renderTextElement('title', 'Title: ' + title);
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {to_content: "description"}, response => {
-          console.log(`getTitle: response received by popup.js ${JSON.stringify(response)}`);
-          const clean_title = title.replace(/ \| Salesforce/, "")
-          link_text = clean_title
-          if (response != null) {
-            renderTextElement("description", response.to_popup);
-            description = response.to_popup;
-            link_text = bestTitleText(description, clean_title);
-          }
-          renderURLArea()
-        });
+        const clean_title = title.replace(/ \| Salesforce/, "")
+        link_text = clean_title
+        renderURLArea()
       });
     })
   });
